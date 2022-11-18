@@ -1,6 +1,6 @@
 # De Derde Kamer
 
-An application that helps to generate social media posts by using a image as a base.
+An infographic to show data regarding the 2de Kamer.
 
 ## Customize configuration
 
