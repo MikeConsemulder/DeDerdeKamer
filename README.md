@@ -1,4 +1,4 @@
-# AnnieSwannieMikeyNator
+# De Derde Kamer
 
 An application that helps to generate social media posts by using a image as a base.
 
