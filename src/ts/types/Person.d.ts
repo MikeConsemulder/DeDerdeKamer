@@ -1,3 +1,5 @@
+import type { PersoonGeschenk } from "./PersoonGeschenk";
+
 export type Person = {
   Id: string | null;
   Nummer: number | null;
@@ -22,10 +24,11 @@ export type Person = {
   GewijzigdOp: string | null;
   ApiGewijzigdOp: string | null;
   Verwijderd: boolean | null;
+  PersoonGeschenken: PersoonGeschenk[];
 };
 
 export type PersonResponse = {
   ["@odata.context"]: string;
-  value: Person[];
+  value: Persoon[];
   ["@odata.nextLink"]: string;
 };

@@ -36,14 +36,20 @@ export class DataRetriever {
   async getPersons({ id, geslacht }: { id?: string; geslacht?: string }) {
     const { result } = useQuery(
       gql`
-        query GetPerson($geslacht: String, $personsId: ID, $fractielabel: String, $functie: String) {
-          persons(geslacht: $geslacht, id: $personsId, fractielabel: $fractielabel, functie: $functie) {
+        query GetPersonen($geslacht: String, $personsId: ID, $fractielabel: String, $functie: String) {
+          personen(geslacht: $geslacht, id: $personsId, fractielabel: $fractielabel, functie: $functie) {
             Id
             Voornamen
             Achternaam
             Geslacht
             Fractielabel
             Functie
+            PersoonGeschenken {
+              Omschrijving
+              Datum
+              Gewicht
+              Persoon_Id
+            }
           }
         }
       `,
@@ -57,7 +63,7 @@ export class DataRetriever {
 
     return new Promise((resolve) => {
       watch(result, (value) => {
-        resolve(value);
+        resolve(value.personen);
       });
     });
   }
