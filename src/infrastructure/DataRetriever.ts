@@ -46,9 +46,27 @@ export class DataRetriever {
             Functie
             PersoonGeschenken {
               Omschrijving
-              Datum
+              Persoon {
+                Voornamen
+                Achternaam
+              }
+            }
+            PersoonReizen {
+              Bestemming
+              BetaaldDoor
+              Van
+              TotEnMet
+              Doel
               Gewicht
-              Persoon_Id
+            }
+            PersoonNevenFuncties {
+              Omschrijving
+              PersoonNevenFunctieInkomsten {
+                Bedrag
+                BedragValuta
+                Jaar
+                Frequentie
+              }
             }
           }
         }

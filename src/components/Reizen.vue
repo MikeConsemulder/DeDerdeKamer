@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import type { PersoonGeschenk } from "@/ts/types/PersoonGeschenk";
+import type { PersoonReis } from "@/ts/types/PersoonReis";
 import { ref } from "vue";
 
 const isActive = ref(false);
 
 const props = defineProps<{
-  persoonGeschenken: PersoonGeschenk[];
+  persoonReizen: PersoonReis[];
 }>();
 </script>
 
 <template>
   <div
-    v-for="geschenk in props.persoonGeschenken"
+    v-for="reis in props.persoonReizen"
     :class="{ active: isActive }"
-    class="Geschenken"
+    class="Reizen"
   >
-    {{ geschenk.Omschrijving }}
+    {{ reis.Bestemming }} - Doel {{ reis.Doel }} - Betaald door: {{ reis.BetaaldDoor }}
   </div>
 </template>
 
 <style scoped lang="scss">
-.Geschenken {
+.Reizen {
   display: none;
   background: white;
   padding: 0.5rem;

@@ -1,4 +1,5 @@
 import type { PersoonGeschenk } from "./PersoonGeschenk";
+import type { PersoonReis } from "./PersoonReis";
 
 export type Person = {
   Id: string | null;
@@ -25,6 +26,7 @@ export type Person = {
   ApiGewijzigdOp: string | null;
   Verwijderd: boolean | null;
   PersoonGeschenken: PersoonGeschenk[];
+  PersoonReizen: PersoonReis[];
 };
 
 export type PersonResponse = {
