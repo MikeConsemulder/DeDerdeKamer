@@ -18,15 +18,3 @@ const props = defineProps<{
     {{ reis.Bestemming }} - Doel {{ reis.Doel }} - Betaald door: {{ reis.BetaaldDoor }}
   </div>
 </template>
-
-<style scoped lang="scss">
-.Reizen {
-  display: none;
-  background: white;
-  padding: 0.5rem;
-
-  &.active {
-    display: block;
-  }
-}
-</style>

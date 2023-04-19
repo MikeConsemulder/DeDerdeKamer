@@ -14,47 +14,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="Persoon">
+  <div class="Persoon p-6 m-6 max-w-sm mx-auto bg-green-200 rounded-xl shadow-lg flex items-center space-x-4">
     <div class="PersoonGegevens">
       <div>{{ props.persoon.Voornamen }} {{ props.persoon.Achternaam }}</div>
       <div>geschenken: {{ props.persoon.PersoonGeschenken.length }}</div>
       <div>Reizen: {{ props.persoon.PersoonReizen.length }}</div>
     </div>
-    <Geschenken
+    <!-- <Geschenken
       v-if="props.persoon.PersoonGeschenken.length"
       :persoonGeschenken="props.persoon.PersoonGeschenken"
     />
     <Reizen
       v-if="props.persoon.PersoonReizen.length"
       :persoonReizen="props.persoon.PersoonReizen"
-    />
+    /> -->
   </div>
 </template>
-
-<style scoped lang="scss">
-.Persoon {
-  position: relative;
-
-  padding: 0.5rem 0.5rem 0;
-
-  box-sizing: border-box;
-
-  background: #8ab9df;
-
-  .PersoonGegevens {
-    padding: 0.5rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &:nth-of-type(even) {
-    //background: rgb(189, 240, 240);
-  }
-
-  &:nth-of-type(odd) {
-    //background: rgb(133, 216, 216);
-  }
-}
-</style>

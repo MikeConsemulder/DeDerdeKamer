@@ -6,7 +6,22 @@ import type { Person } from "./ts/types/Person";
 
 const dataRetriever = new DataRetriever();
 
-const persons = ref([] as Person[]);
+type PersonObject = {
+  raw: Person[];
+  sorted: {
+    n_gifts: Person[];
+    n_travels: Person[];
+  };
+};
+
+const persons = ref({
+  raw: {},
+  sorted: {
+    n_gifts: {},
+    n_travels: {},
+  },
+} as PersonObject);
+
 const data = reactive({
   persons,
 });
@@ -17,50 +32,35 @@ onMounted(async () => {
     geslacht: "",
   };
 
-  data.persons = (await dataRetriever.getPersons(personArguments)) as Person[];
-  //data.persons = data.persons.slice().sort((a, b) => b.PersoonGeschenken.length - a.PersoonGeschenken.length);
-  data.persons = data.persons.slice().sort((a, b) => b.PersoonReizen.length - a.PersoonReizen.length);
+  data.persons.raw = (await dataRetriever.getPersons(personArguments)) as Person[];
+  data.persons.raw = data.persons.raw.slice().sort((a, b) => a.Voornamen.localeCompare(b.Voornamen));
+  data.persons.sorted.n_gifts = data.persons.raw.slice().sort((a, b) => b.PersoonGeschenken.length - a.PersoonGeschenken.length);
+  data.persons.sorted.n_travels = data.persons.raw.slice().sort((a, b) => b.PersoonReizen.length - a.PersoonReizen.length);
 });
 </script>
 
 <template>
   <div class="Container">
     <div class="FrontRunners"></div>
-    <div class="Personen">
-      <Persoon
-        v-for="person in data.persons"
-        :persoon="person"
-      />
+    <div class="PersonenContainer">
+      <!-- <div class="Personen">
+        <Persoon
+          v-for="person in data.persons.raw"
+          :persoon="person"
+        />
+      </div> -->
+      <div class="Personen">
+        <Persoon
+          v-for="person in data.persons.sorted.n_gifts"
+          :persoon="person"
+        />
+      </div>
+      <!-- <div class="Personen">
+        <Persoon
+          v-for="person in data.persons.sorted.n_travels"
+          :persoon="person"
+        />
+      </div> -->
     </div>
   </div>
 </template>
-
-<style lang="scss">
-/*
-A = #4C7291 text
-B = #DEA2A0 Background
-C = #8AB9DF 
-D = #DADE73
-E = #8F9153
-*/
-
-body {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  color: #2e4457;
-}
-
-.FrontRunners {
-  width: 100%;
-  height: 20rem;
-  background: #dea2a0;
-}
-
-.Personen {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  margin: 0 auto;
-}
-</style>

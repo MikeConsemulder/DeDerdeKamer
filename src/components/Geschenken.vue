@@ -18,15 +18,3 @@ const props = defineProps<{
     {{ geschenk.Omschrijving }}
   </div>
 </template>
-
-<style scoped lang="scss">
-.Geschenken {
-  display: none;
-  background: white;
-  padding: 0.5rem;
-
-  &.active {
-    display: block;
-  }
-}
-</style>
