@@ -40,6 +40,7 @@ export class DataRetriever {
           personen(geslacht: $geslacht, id: $personsId, fractielabel: $fractielabel, functie: $functie) {
             Id
             Voornamen
+            Roepnaam
             Achternaam
             Geslacht
             Fractielabel
