@@ -36,8 +36,8 @@ export class DataRetriever {
   async getPersons({ id, geslacht }: { id?: string; geslacht?: string }) {
     const { result } = useQuery(
       gql`
-        query GetPersonen($geslacht: String, $personsId: ID, $fractielabel: String, $functie: String) {
-          personen(geslacht: $geslacht, id: $personsId, fractielabel: $fractielabel, functie: $functie) {
+        query GetPersonen($geslacht: String, $personsId: ID, $functie: String) {
+          personen(geslacht: $geslacht, id: $personsId, functie: $functie) {
             Id
             Voornamen
             Roepnaam
@@ -67,6 +67,21 @@ export class DataRetriever {
                 BedragValuta
                 Jaar
                 Frequentie
+              }
+            }
+            FractieZetelsPersoon {
+              Van
+              TotEnMet
+              FractieZetel {
+                Fractie {
+                  Id
+                  Afkorting
+                  NaamNL
+                  NaamEN
+                  AantalZetels
+                  AantalStemmen
+                  Nummer
+                }
               }
             }
           }

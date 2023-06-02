@@ -27,6 +27,7 @@ export type Person = {
   Verwijderd: boolean;
   PersoonGeschenken: PersoonGeschenk[];
   PersoonReizen: PersoonReis[];
+  FractieZetelsPersoon: FractieZetelPersoon[];
 };
 
 export type PersonResponse = {

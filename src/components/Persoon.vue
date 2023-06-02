@@ -1,13 +1,38 @@
 <script setup lang="ts">
 import type { Person } from "@/ts/types/Person";
-import { onMounted } from "vue";
+import Geschenken from "./Geschenken.vue";
+import Reizen from "./Reizen.vue";
+import { onMounted, ref } from "vue";
+import type { PersoonReis } from "@/ts/types/PersoonReis";
+import type { PersoonGeschenk } from "@/ts/types/PersoonGeschenk";
+import { PersonDataType } from "@/ts/enums/personDataType";
+import type { FractieZetelPersoon } from "@/ts/types/FractieZetelPersoon";
+import type { Fractie } from "@/ts/types/Fractie";
 
 const props = defineProps<{
   persoon: Person;
-  dataValue: number;
+  displayData: {
+    type: PersonDataType;
+    data: PersoonGeschenk[] | PersoonReis[];
+  };
 }>();
 
-let personImgUrl = `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon/${props.persoon.Id}/resource`;
+const moreInfoCollapsed = ref(true);
+
+const personImgUrl = `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon/${props.persoon.Id}/resource`;
+
+const getActiveParty = (fractieZetelsPersoon: FractieZetelPersoon[]): Fractie | undefined => {
+  const fractieZetelPersoon = fractieZetelsPersoon.find((fractieZetelPersoon: FractieZetelPersoon) => {
+    return !fractieZetelPersoon.TotEnMet;
+  });
+
+  if (!fractieZetelPersoon) return undefined;
+
+  return fractieZetelPersoon.FractieZetel.Fractie;
+};
+
+const activeParty = getActiveParty(props.persoon.FractieZetelsPersoon);
+const partyImgUrl = `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie/${activeParty?.Id}/resource`;
 
 onMounted(() => {});
 </script>
@@ -19,29 +44,41 @@ onMounted(() => {});
         <div class="PersoonAvatar">
           <img
             :src="personImgUrl"
-            alt="Afbeelding van persoon"
+            alt=""
           />
         </div>
-        <div class="PartijLogo"></div>
+        <div class="PartijLogo">
+          <img
+            :src="partyImgUrl"
+            alt=""
+          />
+        </div>
       </div>
 
       <div class="DataSection">
-        {{ props.dataValue }}
+        {{ props.displayData.data.length }}
       </div>
       <div class="NameSection">
         <div class="PersoonVoornaam">{{ props.persoon.Roepnaam }}</div>
         <div class="PersoonAchternaam">{{ props.persoon.Achternaam }}</div>
       </div>
-      <div class="MoreInfo">...</div>
+      <div
+        class="MoreInfo"
+        @click="moreInfoCollapsed = !moreInfoCollapsed"
+      >
+        ...
+      </div>
     </div>
-    <!-- <Geschenken
-      v-if="props.persoon.PersoonGeschenken.length"
-      :persoonGeschenken="props.persoon.PersoonGeschenken"
-    />
-    <Reizen
-      v-if="props.persoon.PersoonReizen.length"
-      :persoonReizen="props.persoon.PersoonReizen"
-    /> -->
+    <div v-if="!moreInfoCollapsed">
+      <Geschenken
+        v-if="props.displayData.type === PersonDataType.GESCHENK && props.persoon.PersoonGeschenken.length"
+        :persoonGeschenken="props.persoon.PersoonGeschenken"
+      />
+      <Reizen
+        v-if="props.displayData.type === PersonDataType.REIS && props.persoon.PersoonReizen.length"
+        :persoonReizen="props.persoon.PersoonReizen"
+      />
+    </div>
   </div>
 </template>
 <style lang="scss">
@@ -109,6 +146,12 @@ onMounted(() => {});
 
     .MoreInfo {
       margin-left: auto;
+
+      font-size: 0.8rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

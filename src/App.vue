@@ -2,6 +2,7 @@
 import { onMounted, reactive, ref } from "vue";
 import Persoon from "./components/Persoon.vue";
 import { DataRetriever } from "./infrastructure/DataRetriever";
+import { PersonDataType } from "./ts/enums/personDataType";
 import type { Person } from "./ts/types/Person";
 
 const dataRetriever = new DataRetriever();
@@ -46,38 +47,44 @@ onMounted(async () => {
       <h1>De derde kamer.</h1>
       <div class="HeroInformation">
         <section>
-          <h2>Wat is deze?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim, ante quis tempus malesuada, purus libero laoreet enim, vitae accumsan lectus dolor vel nisi. Donec et laoreet lectus. Nulla laoreet tellus nulla, quis malesuada enim iaculis sed. Vestibulum semper nisl eu libero ullamcorper laoreet.</p>
+          <h2>Transparantie</h2>
+          <p>Toegang tot overheidsdata stelt burgers in staat om te begrijpen hoe de overheid functioneert, welke beslissingen er worden genomen en hoe publieke middelen worden gebruikt. Dit bevordert transparantie en verantwoording, waardoor burgers beter geïnformeerd zijn en in staat zijn om de overheid ter verantwoording te roepen.</p>
         </section>
         <section>
-          <h2>Wat is die?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim, ante quis tempus malesuada, purus libero laoreet enim, vitae accumsan lectus dolor vel nisi. Donec et laoreet lectus. Nulla laoreet tellus nulla, quis malesuada enim iaculis sed. Vestibulum semper nisl eu libero ullamcorper laoreet.</p>
+          <h2>Verantwoording</h2>
+          <p>Door inzicht te hebben in overheidsdata kunnen beleidsmakers, onderzoekers en het publiek beter geïnformeerde beslissingen nemen. Het analyseren van gegevens kan inzichten opleveren over maatschappelijke problemen, trends en patronen, waardoor beleid effectiever kan worden ontwikkeld en aangepast aan de behoeften van de samenleving.</p>
         </section>
         <section>
-          <h2>Wat is dat?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dignissim, ante quis tempus malesuada, purus libero laoreet enim, vitae accumsan lectus dolor vel nisi. Donec et laoreet lectus. Nulla laoreet tellus nulla, quis malesuada enim iaculis sed. Vestibulum semper nisl eu libero ullamcorper laoreet.</p>
+          <h2>Participatie</h2>
+          <p>Toegang tot overheidsdata stimuleert samenwerking en participatie, waarbij burgers, non-profitorganisaties en de private sector data gebruiken om maatschappelijke uitdagingen aan te pakken en nieuwe partnerschappen te creëren.</p>
         </section>
       </div>
     </div>
     <div class="DataContainer">
       <div>
-        Geschenken
+        <h2>Geschenken</h2>
         <div class="List">
           <Persoon
             v-for="person in data.persons.sorted.n_gifts"
             :persoon="person"
-            :data-value="person.PersoonGeschenken.length"
+            :display-data="{
+              type: PersonDataType.GESCHENK,
+              data: person.PersoonGeschenken,
+            }"
           />
         </div>
       </div>
 
       <div>
-        Reizen
+        <h2>Reizen</h2>
         <div class="List">
           <Persoon
             v-for="person in data.persons.sorted.n_travels"
             :persoon="person"
-            :data-value="person.PersoonReizen.length"
+            :display-data="{
+              type: PersonDataType.REIS,
+              data: person.PersoonReizen,
+            }"
           />
         </div>
       </div>
@@ -98,8 +105,9 @@ body {
   flex-direction: column;
   align-items: center;
 
+  padding: 1rem 0 2rem;
+
   width: 100%;
-  height: 500px;
 
   color: #fdfdfe;
   background: #16161a;
@@ -111,7 +119,7 @@ body {
   }
 
   h5 {
-    margin-top: 3rem;
+    margin-top: 2rem;
 
     font-weight: 100;
     font-style: italic;
@@ -123,7 +131,7 @@ body {
   }
 
   h1 {
-    margin-top: 3rem;
+    margin: 3rem 0.5rem;
 
     font-size: 5rem;
     font-weight: 900;
