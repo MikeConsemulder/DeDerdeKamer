@@ -14,7 +14,7 @@
 		"format": "prettier --write src/",
 		"deploy": "aws s3 sync dist s3://kingmike.nl --exclude **/*.js --delete & aws s3 sync dist s3://kingmike.nl --exclude * --include *.js --content-type application/javascript",
 		"deployGithub": "aws s3 sync dist s3://kingmike.nl",
-		"invalidateCache": "aws cloudfront create-invalidation --distribution-id E14YGWPOYW51ZR --paths /*"
+		"invalidateCache": "aws cloudfront create-invalidation --distribution-id E14YGWPOYW51ZR --paths /"
 		},
     "dependencies": {
         "@apollo/client": "^3.7.15",

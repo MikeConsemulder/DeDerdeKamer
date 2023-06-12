@@ -186,10 +186,6 @@ body {
 
     margin-top: 2rem;
 
-    h2 {
-      color: #3c556e;
-    }
-
     .List {
       padding: 1rem 0;
 
