@@ -15,13 +15,12 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           runTests: false
-          build: npm run build
   
       - run: node --version
-      - run:  npm run lint
-      - run:  npm run format
-      - run: npm test:unit
-      - run: npm build
+      - run: npm run lint
+      - run: npm run format
+      - run: npm run test:unit
+      - run: npm run build
     
       - name: Save dist folder
         uses: actions/upload-artifact@v3
