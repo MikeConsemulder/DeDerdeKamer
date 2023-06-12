@@ -68,7 +68,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: package.json
-          path: package.json
       - uses: actions/setup-node@v2
         with:
           node-version: 18
