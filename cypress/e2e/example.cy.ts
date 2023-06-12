@@ -1,8 +1,8 @@
-// https://docs.cypress.io/api/introduction/api.html
+// https://on.cypress.io/api
 
-describe("My First Test", () => {
-  it("visits the app root url", () => {
-    cy.visit("/");
-    cy.contains("h1", "You did it!");
-  });
-});
+describe('Basic visuals', () => {
+  it('Shows the title of the application', () => {
+    cy.visit('/')
+    cy.contains('De derde kamer.')
+  })
+})

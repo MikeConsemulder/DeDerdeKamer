@@ -5,8 +5,8 @@ import type { FractieZetelPersoon } from "../ts/types/FractieZetelPersoon";
 import type { Person } from "../ts/types/Person";
 import type { PersoonGeschenk } from "../ts/types/PersoonGeschenk";
 import type { PersoonReis } from "../ts/types/PersoonReis";
-import Geschenken from "./Geschenken.vue";
-import Reizen from "./Reizen.vue";
+import Geschenken from "./person-gifts.vue";
+import Reizen from "./person-travels.vue";
 import { onMounted, ref } from "vue";
 
 const props = defineProps<{
@@ -32,7 +32,7 @@ const getActiveParty = (fractieZetelsPersoon: FractieZetelPersoon[]): Fractie | 
 };
 
 const activeParty = getActiveParty(props.persoon.FractieZetelsPersoon);
-const partyImgUrl = `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie/${activeParty?.Id}/resource`;
+//const partyImgUrl = `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Fractie/${activeParty?.Id}/resource`;
 
 onMounted(() => {});
 </script>

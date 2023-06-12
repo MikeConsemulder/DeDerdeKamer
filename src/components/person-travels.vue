@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import type { PersoonReis } from "../ts/types/PersoonReis";
-
-const isActive = ref(false);
 
 const props = defineProps<{
   persoonReizen: PersoonReis[];

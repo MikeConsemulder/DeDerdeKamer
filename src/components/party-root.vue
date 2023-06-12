@@ -2,6 +2,6 @@
 
 <template>
   <div>
-    <h2>De derde kamer</h2>
+    <h2>Fractie</h2>
   </div>
 </template>

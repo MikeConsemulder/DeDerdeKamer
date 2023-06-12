@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue";
-import Persoon from "./components/Persoon.vue";
+import Persoon from "./components/person-root.vue";
 import { DataRetriever } from "./infrastructure/DataRetriever";
 import { PersonDataType } from "./ts/enums/personDataType";
 import type { Person } from "./ts/types/Person";
@@ -75,6 +75,7 @@ onMounted(async () => {
         <div class="List">
           <Persoon
             v-for="person in data.persons.sorted.n_gifts"
+            :key="person.Id"
             :persoon="person"
             :display-data="{
               type: PersonDataType.GESCHENK,
@@ -90,6 +91,7 @@ onMounted(async () => {
           <Persoon
             v-for="person in data.persons.sorted.n_travels"
             :persoon="person"
+            :key="person.Id"
             :display-data="{
               type: PersonDataType.REIS,
               data: person.PersoonReizen,
