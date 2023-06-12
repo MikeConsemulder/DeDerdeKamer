@@ -28,6 +28,12 @@ jobs:
           name: dist
           if-no-files-found: error
           path: dist
+      - name: Save package.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: package.json
+          if-no-files-found: error
+          path: package.json
 
   cypress-run:
     runs-on: ubuntu-22.04
@@ -53,11 +59,16 @@ jobs:
     needs: cypress-run
     timeout-minutes: 10
     steps:
-      - name: Download the build folder
+      - name: Download the dist folder
         uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
+      - name: Download package.json
+        uses: actions/download-artifact@v3
+        with:
+          name: package.json
+          path: package.json
       - uses: actions/setup-node@v2
         with:
           node-version: 18
