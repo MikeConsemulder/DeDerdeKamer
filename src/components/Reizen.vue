@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PersoonReis } from "@/ts/types/PersoonReis";
 import { ref } from "vue";
+import type { PersoonReis } from "../ts/types/PersoonReis";
 
 const isActive = ref(false);
 
@@ -20,10 +20,7 @@ const props = defineProps<{
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="reis in props.persoonReizen"
-          :key="(reis.Id as string)"
-        >
+        <tr v-for="reis in props.persoonReizen" :key="(reis.Id as string)">
           <td>{{ reis.Bestemming }}</td>
           <td>{{ reis.Doel }}</td>
           <td>{{ reis.BetaaldDoor }}</td>

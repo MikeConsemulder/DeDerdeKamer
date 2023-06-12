@@ -1,3 +1,4 @@
+import { FractieZetelPersoon } from "./FractieZetelPersoon";
 import type { PersoonGeschenk } from "./PersoonGeschenk";
 import type { PersoonReis } from "./PersoonReis";
 
@@ -32,6 +33,6 @@ export type Person = {
 
 export type PersonResponse = {
   ["@odata.context"]: string;
-  value: Persoon[];
+  value: Person[];
   ["@odata.nextLink"]: string;
 };

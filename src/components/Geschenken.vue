@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PersoonGeschenk } from "@/ts/types/PersoonGeschenk";
 import { ref } from "vue";
+import type { PersoonGeschenk } from "../ts/types/PersoonGeschenk";
 
 const isActive = ref(false);
 
@@ -18,10 +18,7 @@ const props = defineProps<{
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="geschenk in props.persoonGeschenken"
-          :key="(geschenk.Id as string)"
-        >
+        <tr v-for="geschenk in props.persoonGeschenken" :key="(geschenk.Id as string)">
           <td>{{ geschenk.Omschrijving }}</td>
         </tr>
       </tbody>

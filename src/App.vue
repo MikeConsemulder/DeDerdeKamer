@@ -48,15 +48,24 @@ onMounted(async () => {
       <div class="HeroInformation">
         <section>
           <h2>Transparantie</h2>
-          <p>Toegang tot overheidsdata stelt burgers in staat om te begrijpen hoe de overheid functioneert, welke beslissingen er worden genomen en hoe publieke middelen worden gebruikt. Dit bevordert transparantie en verantwoording, waardoor burgers beter geïnformeerd zijn en in staat zijn om de overheid ter verantwoording te roepen.</p>
+          <p>
+            Toegang tot overheidsdata stelt burgers in staat om te begrijpen hoe de overheid functioneert, welke beslissingen er worden genomen en hoe publieke middelen worden gebruikt. Dit bevordert
+            transparantie en verantwoording, waardoor burgers beter geïnformeerd zijn en in staat zijn om de overheid ter verantwoording te roepen.
+          </p>
         </section>
         <section>
           <h2>Verantwoording</h2>
-          <p>Door inzicht te hebben in overheidsdata kunnen beleidsmakers, onderzoekers en het publiek beter geïnformeerde beslissingen nemen. Het analyseren van gegevens kan inzichten opleveren over maatschappelijke problemen, trends en patronen, waardoor beleid effectiever kan worden ontwikkeld en aangepast aan de behoeften van de samenleving.</p>
+          <p>
+            Door inzicht te hebben in overheidsdata kunnen beleidsmakers, onderzoekers en het publiek beter geïnformeerde beslissingen nemen. Het analyseren van gegevens kan inzichten opleveren over
+            maatschappelijke problemen, trends en patronen, waardoor beleid effectiever kan worden ontwikkeld en aangepast aan de behoeften van de samenleving.
+          </p>
         </section>
         <section>
           <h2>Participatie</h2>
-          <p>Toegang tot overheidsdata stimuleert samenwerking en participatie, waarbij burgers, non-profitorganisaties en de private sector data gebruiken om maatschappelijke uitdagingen aan te pakken en nieuwe partnerschappen te creëren.</p>
+          <p>
+            Toegang tot overheidsdata stimuleert samenwerking en participatie, waarbij burgers, non-profitorganisaties en de private sector data gebruiken om maatschappelijke uitdagingen aan te pakken
+            en nieuwe partnerschappen te creëren.
+          </p>
         </section>
       </div>
     </div>
@@ -100,88 +109,92 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.HeroImage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.Container {
+  padding-bottom: 10rem;
 
-  padding: 1rem 0 2rem;
-
-  width: 100%;
-
-  color: #fdfdfe;
-  background: #16161a;
-
-  h1,
-  h5 {
-    margin: 0;
-    padding: 0;
-  }
-
-  h5 {
-    margin-top: 2rem;
-
-    font-weight: 100;
-    font-style: italic;
-
-    &::before,
-    &::after {
-      content: " - ";
-    }
-  }
-
-  h1 {
-    margin: 3rem 0.5rem;
-
-    font-size: 5rem;
-    font-weight: 900;
-  }
-
-  .HeroInformation {
+  .HeroImage {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 
-    margin-top: 5rem;
+    padding: 1rem 0 2rem;
 
     width: 100%;
 
-    section {
-      flex: 1;
+    color: #fdfdfe;
+    background: #16161a;
 
-      margin: 0 1rem;
+    h1,
+    h5 {
+      margin: 0;
+      padding: 0;
+    }
 
-      max-width: 300px;
+    h5 {
+      margin-top: 2rem;
 
-      h2 {
-        font-size: 1rem;
-        font-weight: bold;
+      font-weight: 100;
+      font-style: italic;
+
+      &::before,
+      &::after {
+        content: " - ";
       }
+    }
 
-      p {
-        color: #a7abae;
-        font-size: 0.8rem;
-        line-height: 1.2rem;
+    h1 {
+      margin: 3rem 0.5rem;
+
+      font-size: 5rem;
+      font-weight: 900;
+    }
+
+    .HeroInformation {
+      display: flex;
+      justify-content: space-around;
+
+      margin-top: 5rem;
+
+      width: 100%;
+
+      section {
+        flex: 1;
+
+        margin: 0 1rem;
+
+        max-width: 300px;
+
+        h2 {
+          font-size: 1rem;
+          font-weight: bold;
+        }
+
+        p {
+          color: #a7abae;
+          font-size: 0.8rem;
+          line-height: 1.2rem;
+        }
       }
     }
   }
-}
 
-.DataContainer {
-  display: flex;
-  justify-content: space-around;
+  .DataContainer {
+    display: flex;
+    justify-content: space-around;
 
-  margin-top: 2rem;
+    margin-top: 2rem;
 
-  .List {
-    padding: 1rem 0;
+    .List {
+      padding: 1rem 0;
 
-    width: 400px;
+      width: 400px;
 
-    max-height: 500px;
+      max-height: 500px;
 
-    box-shadow: 2px 2px 4px 0px #a7abae;
+      box-shadow: 2px 2px 4px 0px #a7abae;
 
-    overflow: scroll;
+      overflow: scroll;
+    }
   }
 }
 </style>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Person } from "@/ts/types/Person";
+import { PersonDataType } from "../ts/enums/personDataType";
+import type { Fractie } from "../ts/types/Fractie";
+import type { FractieZetelPersoon } from "../ts/types/FractieZetelPersoon";
+import type { Person } from "../ts/types/Person";
+import type { PersoonGeschenk } from "../ts/types/PersoonGeschenk";
+import type { PersoonReis } from "../ts/types/PersoonReis";
 import Geschenken from "./Geschenken.vue";
 import Reizen from "./Reizen.vue";
 import { onMounted, ref } from "vue";
-import type { PersoonReis } from "@/ts/types/PersoonReis";
-import type { PersoonGeschenk } from "@/ts/types/PersoonGeschenk";
-import { PersonDataType } from "@/ts/enums/personDataType";
-import type { FractieZetelPersoon } from "@/ts/types/FractieZetelPersoon";
-import type { Fractie } from "@/ts/types/Fractie";
 
 const props = defineProps<{
   persoon: Person;
@@ -40,51 +40,44 @@ onMounted(() => {});
 <template>
   <div class="Persoon">
     <div class="PersoonGegevens">
+      <div class="DataSection">
+        {{ props.displayData.data.length }}
+      </div>
       <div class="AvatarSection">
         <div class="PersoonAvatar">
-          <img
-            :src="personImgUrl"
-            alt=""
-          />
+          <img :src="personImgUrl" alt="" />
         </div>
-        <div class="PartijLogo">
+        <div class="PartijNaam">
+          {{ activeParty?.Afkorting }}
+        </div>
+        <!-- <div class="PartijLogo">
           <img
             :src="partyImgUrl"
             alt=""
           />
-        </div>
-      </div>
-
-      <div class="DataSection">
-        {{ props.displayData.data.length }}
+        </div> -->
       </div>
       <div class="NameSection">
-        <div class="PersoonVoornaam">{{ props.persoon.Roepnaam }}</div>
-        <div class="PersoonAchternaam">{{ props.persoon.Achternaam }}</div>
+        <div class="PersoonVoornaam">{{ props.persoon.Roepnaam }} {{ props.persoon.Achternaam }}</div>
       </div>
-      <div
-        class="MoreInfo"
-        @click="moreInfoCollapsed = !moreInfoCollapsed"
-      >
-        ...
-      </div>
+      <div class="MoreInfo" @click="moreInfoCollapsed = !moreInfoCollapsed">...</div>
     </div>
     <div v-if="!moreInfoCollapsed">
-      <Geschenken
-        v-if="props.displayData.type === PersonDataType.GESCHENK && props.persoon.PersoonGeschenken.length"
-        :persoonGeschenken="props.persoon.PersoonGeschenken"
-      />
-      <Reizen
-        v-if="props.displayData.type === PersonDataType.REIS && props.persoon.PersoonReizen.length"
-        :persoonReizen="props.persoon.PersoonReizen"
-      />
+      <Geschenken v-if="props.displayData.type === PersonDataType.GESCHENK && props.persoon.PersoonGeschenken.length" :persoonGeschenken="props.persoon.PersoonGeschenken" />
+      <Reizen v-if="props.displayData.type === PersonDataType.REIS && props.persoon.PersoonReizen.length" :persoonReizen="props.persoon.PersoonReizen" />
     </div>
   </div>
 </template>
 <style lang="scss">
 .Persoon {
-  margin: 1rem 0;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+
+  font-size: 0.9rem;
+  color: #3c556e;
+
+  &:nth-of-type(even) {
+    background: #f3f3f3;
+  }
 
   .PersoonGegevens {
     display: flex;
@@ -128,6 +121,9 @@ onMounted(() => {});
       width: 35px;
       height: 35px;
 
+      min-width: 35px;
+      min-height: 35px;
+
       margin-right: 0.5rem;
 
       border-radius: 50%;
@@ -142,6 +138,17 @@ onMounted(() => {});
         min-width: 35px;
         width: 100%;
       }
+    }
+
+    .PartijNaam {
+      display: flex;
+      align-items: center;
+
+      margin-left: 0.5rem;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .MoreInfo {
